@@ -1,0 +1,171 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * BookWorm's Nook — dark academia design system.
+ * Espresso wood, candlelight gold, oxblood, aged parchment.
+ * All colors are oklch tokens; never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-parchment: var(--parchment);
+  --color-gold: var(--gold);
+  --color-oxblood: var(--oxblood);
+  --color-moss: var(--moss);
+  --color-ink: var(--ink);
+  --color-wood: var(--wood);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.375rem;
+  --background: oklch(0.17 0.018 52);
+  --foreground: oklch(0.91 0.024 82);
+  --card: oklch(0.23 0.024 54);
+  --card-foreground: oklch(0.92 0.022 82);
+  --popover: oklch(0.21 0.022 54);
+  --popover-foreground: oklch(0.92 0.022 82);
+  --primary: oklch(0.74 0.115 76);
+  --primary-foreground: oklch(0.19 0.02 52);
+  --secondary: oklch(0.29 0.03 52);
+  --secondary-foreground: oklch(0.9 0.024 82);
+  --muted: oklch(0.27 0.025 52);
+  --muted-foreground: oklch(0.71 0.03 78);
+  --accent: oklch(0.36 0.075 25);
+  --accent-foreground: oklch(0.93 0.02 82);
+  --destructive: oklch(0.51 0.16 25);
+  --destructive-foreground: oklch(0.95 0.015 82);
+  --border: oklch(0.34 0.03 56);
+  --input: oklch(0.3 0.028 56);
+  --ring: oklch(0.74 0.115 76);
+
+  --parchment: oklch(0.93 0.035 85);
+  --gold: oklch(0.78 0.12 82);
+  --oxblood: oklch(0.38 0.11 24);
+  --moss: oklch(0.44 0.06 135);
+  --ink: oklch(0.15 0.015 52);
+  --wood: oklch(0.26 0.04 48);
+
+  --chart-1: oklch(0.74 0.115 76);
+  --chart-2: oklch(0.48 0.1 25);
+  --chart-3: oklch(0.52 0.07 135);
+  --chart-4: oklch(0.58 0.06 250);
+  --chart-5: oklch(0.65 0.08 40);
+
+  --gradient-candle: radial-gradient(
+    ellipse at 50% 0%,
+    color-mix(in oklab, var(--gold) 20%, transparent),
+    transparent 65%
+  );
+  --gradient-shelf: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--wood) 92%, black) 0%,
+    color-mix(in oklab, var(--wood) 60%, black) 100%
+  );
+  --shadow-tome: 0 18px 40px -18px oklch(0 0 0 / 0.75);
+  --shadow-candle: 0 0 40px -8px color-mix(in oklab, var(--gold) 45%, transparent);
+}
+
+@utility invert-logo {
+  filter: invert(1) sepia(0.5) saturate(1.6) hue-rotate(345deg) brightness(1.1);
+  mix-blend-mode: screen;
+}
+
+@utility nav-link {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-muted-foreground);
+  border: 1px solid transparent;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+
+  &:hover {
+    color: var(--color-primary);
+    background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  }
+
+  &[data-current="true"] {
+    color: var(--color-primary);
+    border-color: color-mix(in oklab, var(--color-primary) 45%, transparent);
+  }
+}
+
+@utility shelf-plank {
+  background-image: var(--gradient-shelf);
+  box-shadow:
+    0 6px 14px -4px oklch(0 0 0 / 0.8),
+    inset 0 1px 0 color-mix(in oklab, var(--gold) 22%, transparent);
+}
+
+@utility candle-glow {
+  background-image: var(--gradient-candle);
+}
+
+@utility paper-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-tome);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+}
